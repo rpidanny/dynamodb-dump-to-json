@@ -10,7 +10,7 @@ if ( inputFile && outputFile ) {
   });
   const jsonData = []
   console.log(`Converting ${inputFile} to JSON`);
-
+  console.time('time')
   lineReader.on('line', (line) => {
     const raw= JSON.parse(line)
     const cleaned = cleanupObject(raw)
@@ -21,6 +21,7 @@ if ( inputFile && outputFile ) {
         throw err
       }
       console.log('Conversion complete.');
+      console.timeEnd('time')
       process.exit(0);
     });
   });
